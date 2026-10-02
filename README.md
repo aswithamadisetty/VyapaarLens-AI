@@ -1,49 +1,73 @@
+# 📊 VyapaarLens AI — Smart Business Intelligence & Decision Support
 
-# VyapaarLens AI — Hackathon MVP
+**Turn business data into actionable insights. Simulate decisions. Understand risks before acting.**
 
-## Run
-1. Install Python 3.11+.
-2. Open terminal in this folder.
-3. Run:
-   pip install -r requirements.txt
-4. Run:
-   python app.py
-5. Open:
-   http://127.0.0.1:5000
+VyapaarLens AI is a business intelligence and decision-support web application designed to help small businesses analyze sales data, understand product performance, monitor inventory, and evaluate hypothetical business scenarios.
 
-## Demo dataset
-Use `data/demo_business_sales.csv` first. It contains:
-- Product
-- Quantity
-- Price
-- Cost
-- Inventory
-- Date
+## 🚀 Key Features
 
-This is intentionally shaped for the VyapaarLens prototype so Revenue, Cost and Profit can all be calculated.
+### 📂 1. Smart Data Upload
+- Upload business datasets in CSV and Excel formats.
+- Automatically detect common business column names and aliases.
+- Map uploaded columns to standardized business fields.
+- Calculate a data confidence score.
+- Identify missing data that may limit analysis.
 
-## Real dataset
-The UCI Online Retail dataset is a credible public sales dataset. It contains Quantity and UnitPrice, but it does NOT contain product cost or inventory, so profit analysis will remain limited unless you enrich it with cost/inventory data.
+### 📈 2. Business Performance Analytics
+- Calculate total revenue, cost, and profit when the required data is available.
+- Identify top-performing products.
+- Visualize product performance through charts.
+- Analyze revenue trends when transaction dates are available.
 
-UCI Online Retail:
-https://archive.ics.uci.edu/dataset/352/online+retail
+### 📦 3. Inventory Intelligence
+- Identify products with low stock levels.
+- Flag products with high inventory levels.
+- Generate inventory-related insights using configurable thresholds.
 
-For the hackathon demo, start with the included demo_business_sales.csv. Then optionally show the UCI dataset to demonstrate that the Data Agent can handle real-world transactional data.
+### 🤖 4. Multi-Agent Decision Workflow
 
-## Architecture
-- Data Agent: validation + canonical field mapping + confidence score
-- Analyst Agent: product performance analysis
-- Decision Agent: deterministic scenario calculations
-- Risk Agent: assumptions and data limitations
-- Orchestrator: Flask API routes coordinate the agents
+| Agent | Responsibility |
+|---|---|
+| Data Agent | Validates datasets and detects business fields. |
+| Analyst Agent | Analyzes sales, revenue, costs, and product performance. |
+| Decision Agent | Simulates hypothetical business scenarios. |
+| Risk Agent | Identifies missing information, assumptions, and limitations. |
+| Orchestrator | Coordinates the workflow through Flask API endpoints. |
 
-Gemini can be added later for natural-language explanation, but the numeric calculations should remain deterministic Python calculations.
+### 🧪 5. AI Decision Stress Tester
+Simulate different business scenarios:
 
-## Stress Tester logic
+- Increase sales
+- Reduce sales
+- Increase price
+- Reduce price
 
-The Stress Tester models scenarios differently rather than applying one multiplier to every metric:
-- Increase/Reduce sales: changes sales volume; price and unit cost remain unchanged.
-- Increase/Reduce price: changes selling price; sales volume and unit cost remain unchanged.
+View projected revenue changes, profit impacts when sufficient data is available, and associated assumptions.
 
-Profit is recalculated as `scenario revenue - scenario cost`, so price scenarios do not incorrectly scale costs.
-The UI also displays a plain-language decision insight and explicit scenario assumptions.
+### 💡 6. Business Insights
+- Generate data-driven business insights.
+- Highlight potential business risks.
+- Support informed decisions using numerical analysis.
+- Display recommendations based on available data.
+
+## 🛠️ Tech Stack
+
+- **Backend:** Python, Flask
+- **Data Analysis:** Pandas, NumPy
+- **Frontend:** HTML, CSS, JavaScript
+- **Visualization:** Chart.js
+- **Excel Support:** openpyxl
+
+## 🏗️ Project Structure
+
+```text
+VyapaarLens_AI_MVP/
+├── app.py
+├── requirements.txt
+├── README.md
+├── data/
+│   └── demo_business_sales.csv
+├── instance/
+├── static/
+└── templates/
+    └── index.html

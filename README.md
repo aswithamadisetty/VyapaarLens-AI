@@ -25,6 +25,7 @@ The application analyzes sales data, evaluates product performance, monitors inv
 - **JavaScript** — Interactive functionality
 - **Chart.js** — Data visualization
 - **openpyxl** — Excel file processing
+- **Gunicorn** — Production WSGI server for deployment
 
 ## ⚙️ Setup & Installation Steps
 
@@ -81,7 +82,7 @@ python app.py
 
 Open your web browser and visit:
 
-http://127.0.0.1:5000
+https://vyapaarlens-ai.onrender.com/
 
 ### Step 3: Use VyapaarLens AI
 

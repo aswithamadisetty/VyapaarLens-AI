@@ -72,12 +72,6 @@ pip install -r requirements.txt
 
 ### Step 1: Start the Application
 
-Run the following command from the directory containing `app.py`:
-
-```bash
-python app.py
-```
-
 ### Step 2: Open the Application
 
 Open your web browser and visit:

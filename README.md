@@ -1,73 +1,104 @@
-# 📊 VyapaarLens AI — Smart Business Intelligence & Decision Support
+# 📊 VyapaarLens AI — Smart Business Intelligence
 
-**Turn business data into actionable insights. Simulate decisions. Understand risks before acting.**
+## 💡 Project Overview
 
-VyapaarLens AI is a business intelligence and decision-support web application designed to help small businesses analyze sales data, understand product performance, monitor inventory, and evaluate hypothetical business scenarios.
+VyapaarLens AI is a business intelligence and decision-support application designed to help small businesses make data-driven decisions.
 
-## 🚀 Key Features
+The application analyzes sales data, evaluates product performance, monitors inventory, and simulates business scenarios to understand their potential impact on revenue and profit.
 
-### 📂 1. Smart Data Upload
-- Upload business datasets in CSV and Excel formats.
-- Automatically detect common business column names and aliases.
-- Map uploaded columns to standardized business fields.
-- Calculate a data confidence score.
-- Identify missing data that may limit analysis.
+### Key Features
+- 📂 Upload business datasets in CSV and Excel formats.
+- 📈 Analyze sales, revenue, costs, and profit.
+- 📦 Identify low-stock and high-stock products.
+- 🤖 Use a multi-agent workflow for data validation, analysis, decision simulation, and risk identification.
+- 🧪 Simulate sales and pricing scenarios using the Decision Stress Tester.
+- 💡 Generate business insights based on available data.
 
-### 📈 2. Business Performance Analytics
-- Calculate total revenue, cost, and profit when the required data is available.
-- Identify top-performing products.
-- Visualize product performance through charts.
-- Analyze revenue trends when transaction dates are available.
+## 🛠️ Technologies Used
 
-### 📦 3. Inventory Intelligence
-- Identify products with low stock levels.
-- Flag products with high inventory levels.
-- Generate inventory-related insights using configurable thresholds.
+- **Python** — Backend logic and business calculations
+- **Flask** — Web application and API endpoints
+- **Pandas** — Data processing and analysis
+- **NumPy** — Numerical computations
+- **HTML5** — Webpage structure
+- **CSS3** — Dashboard styling
+- **JavaScript** — Interactive functionality
+- **Chart.js** — Data visualization
+- **openpyxl** — Excel file processing
 
-### 🤖 4. Multi-Agent Decision Workflow
+## ⚙️ Setup & Installation Steps
 
-| Agent | Responsibility |
-|---|---|
-| Data Agent | Validates datasets and detects business fields. |
-| Analyst Agent | Analyzes sales, revenue, costs, and product performance. |
-| Decision Agent | Simulates hypothetical business scenarios. |
-| Risk Agent | Identifies missing information, assumptions, and limitations. |
-| Orchestrator | Coordinates the workflow through Flask API endpoints. |
+### Prerequisites
+- Python 3.11 or later
+- pip
+- Git
 
-### 🧪 5. AI Decision Stress Tester
-Simulate different business scenarios:
+### Step 1: Clone the Repository
 
-- Increase sales
-- Reduce sales
-- Increase price
-- Reduce price
+```bash
+git clone https://github.com/YOUR-USERNAME/VyapaarLens_AI_MVP.git
+```
 
-View projected revenue changes, profit impacts when sufficient data is available, and associated assumptions.
+### Step 2: Navigate to the Project Directory
 
-### 💡 6. Business Insights
-- Generate data-driven business insights.
-- Highlight potential business risks.
-- Support informed decisions using numerical analysis.
-- Display recommendations based on available data.
+```bash
+cd VyapaarLens_AI_MVP
+```
 
-## 🛠️ Tech Stack
+### Step 3: Create a Virtual Environment
 
-- **Backend:** Python, Flask
-- **Data Analysis:** Pandas, NumPy
-- **Frontend:** HTML, CSS, JavaScript
-- **Visualization:** Chart.js
-- **Excel Support:** openpyxl
+**Windows:**
 
-## 🏗️ Project Structure
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
-```text
-VyapaarLens_AI_MVP/
-├── app.py
-├── requirements.txt
-├── README.md
-├── data/
-│   └── demo_business_sales.csv
-├── instance/
-├── static/
-└── templates/
-    └── index.html
+**macOS / Linux:**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### Step 4: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## 🚀 How to Run the Project
+
+### Step 1: Start the Application
+
+Run the following command from the directory containing `app.py`:
+
+```bash
+python app.py
+```
+
+### Step 2: Open the Application
+
+Open your web browser and visit:
+
+http://127.0.0.1:5000
+
+### Step 3: Use VyapaarLens AI
+
+1. Upload a business dataset in CSV or Excel format.
+2. Run the analysis to view available business metrics.
+3. Explore revenue, product performance, and inventory insights.
+4. Use the Decision Stress Tester to simulate sales or pricing changes.
+5. Review projected results and assumptions to support business decisions.
+
+### Sample Dataset
+
+If available, use `data/demo_business_sales.csv` to explore the application's features.
+
+---
+
+**Note:** Analysis results depend on the quality and completeness of the uploaded data. Profit calculations require appropriate cost information, while revenue trend analysis requires valid date information. Scenario simulations are estimates based on simplified assumptions.
+
+---
+
+**Developed using Python, Flask, Pandas, NumPy, HTML, CSS, and JavaScript.**

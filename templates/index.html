@@ -1,0 +1,1889 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+>
+
+<title>
+    VyapaarLens AI — Business Decision Engine
+</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+*{
+    box-sizing:border-box
+}
+
+body{
+    margin:0;
+    font-family:Inter,Arial,sans-serif;
+    background:#071021;
+    color:#fff
+}
+
+nav{
+    height:76px;
+    background:#fff;
+    color:#111;
+    display:flex;
+    align-items:center;
+    padding:0 5%;
+    gap:34px
+}
+
+.logo{
+    font-size:21px;
+    font-weight:800
+}
+
+.logo span{
+    color:#6b4cff
+}
+
+.navlinks{
+    margin-left:auto;
+    display:flex;
+    gap:34px;
+    color:#555
+}
+
+.navlinks a{
+    text-decoration:none;
+    color:#555
+}
+
+.btn{
+    background:#2864ef;
+    color:white;
+    border:0;
+    border-radius:10px;
+    padding:14px 20px;
+    font-weight:700;
+    cursor:pointer
+}
+
+.container{
+    width:86%;
+    max-width:1450px;
+    margin:0 auto;
+    padding:34px 0 70px
+}
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:24px
+}
+
+.hero h1{
+    font-size:42px;
+    margin:0 0 8px
+}
+
+.hero p{
+    color:#aebbd4;
+    margin:0
+}
+
+.card{
+    background:#101c31;
+    border:1px solid #20314f;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:20px
+}
+
+.upload{
+    border:1px dashed #53698e;
+    text-align:center;
+    padding:28px
+}
+
+.upload input{
+    margin:14px;
+    color:#dce6f8
+}
+
+.metrics{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px
+}
+
+.metric{
+    background:#101c31;
+    border:1px solid #20314f;
+    border-radius:14px;
+    padding:20px
+}
+
+.metric small{
+    color:#8ea5c7;
+    text-transform:uppercase
+}
+
+.metric strong{
+    display:block;
+    font-size:26px;
+    margin-top:12px
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1.65fr 1fr;
+    gap:18px
+}
+
+.section-title{
+    font-size:16px;
+    font-weight:800;
+    margin-bottom:16px
+}
+
+.agent{
+    padding:15px 0;
+    border-bottom:1px solid #263652
+}
+
+.agent:last-child{
+    border-bottom:0
+}
+
+.agent b{
+    display:block
+}
+
+.agent span{
+    color:#9fb0ca;
+    font-size:13px
+}
+
+.chartbox{
+    height:360px
+}
+
+.warning{
+    background:#2b2114;
+    border-left:3px solid #f3a329;
+    padding:12px;
+    margin:8px 0;
+    color:#f0d7ad;
+    border-radius:3px
+}
+
+.success{
+    background:#102b25;
+    border-left:3px solid #28c79a;
+    padding:12px;
+    margin:8px 0;
+    color:#bcebdd
+}
+
+.tag{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    background:#172641;
+    color:#91a8cc;
+    font-size:12px
+}
+
+.stress{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+    align-items:end
+}
+
+.stress label{
+    font-size:12px;
+    color:#9fb0ca;
+    display:block;
+    margin-bottom:7px
+}
+
+.stress select,
+.stress input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #324663;
+    background:#0b1629;
+    color:white
+}
+
+.results{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:18px
+}
+
+.result{
+    padding:16px;
+    background:#0b1629;
+    border-radius:10px
+}
+
+.result small{
+    color:#8ea5c7
+}
+
+.result b{
+    display:block;
+    font-size:20px;
+    margin-top:8px
+}
+
+.insights{
+    display:grid;
+    gap:10px
+}
+
+.insight{
+    background:#0b1629;
+    border:1px solid #20314f;
+    border-radius:10px;
+    padding:14px;
+    color:#dce6f8;
+    line-height:1.5
+}
+
+.recommendation{
+    background:#172641;
+    border-left:3px solid #6b4cff;
+    padding:15px;
+    border-radius:4px;
+    color:#dce6f8;
+    line-height:1.5
+}
+
+.agent-flow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:10px
+}
+
+.flow-agent{
+    background:#172641;
+    border:1px solid #30486e;
+    border-radius:10px;
+    padding:13px 17px;
+    text-align:center;
+    min-width:125px
+}
+
+.flow-agent b{
+    display:block;
+    font-size:13px
+}
+
+.flow-agent span{
+    color:#8fa4c5;
+    font-size:11px
+}
+
+.flow-arrow{
+    color:#6b8ac5;
+    font-size:20px
+}
+
+.inventory-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px
+}
+
+.inventory-item{
+    background:#0b1629;
+    padding:16px;
+    border-radius:10px
+}
+
+.inventory-item small{
+    color:#8ea5c7
+}
+
+.inventory-item strong{
+    display:block;
+    font-size:22px;
+    margin-top:8px
+}
+
+.mini-chart{
+    height:300px
+}
+
+.empty{
+    color:#8fa4c5;
+    font-size:14px;
+    padding:10px 0
+}
+
+@media(max-width:900px){
+
+    .metrics,
+    .grid,
+    .stress,
+    .results,
+    .inventory-grid{
+        grid-template-columns:1fr 1fr
+    }
+
+    .navlinks{
+        display:none
+    }
+}
+
+@media(max-width:600px){
+
+    .metrics,
+    .grid,
+    .stress,
+    .results,
+    .inventory-grid{
+        grid-template-columns:1fr
+    }
+
+    .hero h1{
+        font-size:32px
+    }
+
+    .container{
+        width:92%
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav>
+
+<div class="logo">
+    ▣ VyapaarLens <span>AI</span>
+</div>
+
+<div class="navlinks">
+
+<a href="#how">How it works</a>
+
+<a href="#insights">Features</a>
+
+<a href="#stressTester">Stress Tester</a>
+
+<a href="#agents">Agents</a>
+
+</div>
+
+<button
+    class="btn"
+    onclick="document.getElementById('file').click()"
+>
+    Try demo →
+</button>
+
+</nav>
+
+
+<div class="container">
+
+
+<!-- ========================================================
+     HERO
+========================================================= -->
+
+<div class="hero">
+
+<div>
+
+<h1>
+    Evidence before action
+</h1>
+
+<p>
+    Analyze business data, test decisions and understand risks before acting.
+</p>
+
+</div>
+
+<span
+    class="tag"
+    id="status"
+>
+    READY
+</span>
+
+</div>
+
+
+<!-- ========================================================
+     UPLOAD
+========================================================= -->
+
+<div class="card upload">
+
+<strong>
+    Upload business data
+</strong>
+
+<br>
+
+<span style="color:#8fa4c5">
+
+CSV or Excel — common sales column names are detected automatically.
+
+</span>
+
+<br>
+
+<input
+    id="file"
+    type="file"
+    accept=".csv,.xlsx,.xls"
+>
+
+<button
+    class="btn"
+    onclick="analyze()"
+>
+    Run Analysis
+</button>
+
+</div>
+
+
+<!-- ========================================================
+     METRICS
+========================================================= -->
+
+<div class="metrics">
+
+<div class="metric">
+
+<small>
+    Data confidence
+</small>
+
+<strong id="confidence">
+    —
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+    Rows analyzed
+</small>
+
+<strong id="rows">
+    —
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+    Base revenue
+</small>
+
+<strong id="baseRevenue">
+    ₹0
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+    Scenario delta
+</small>
+
+<strong id="delta">
+    ₹0
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- ========================================================
+     AGENT WORKFLOW
+========================================================= -->
+
+<div
+    class="card"
+    id="agents"
+    style="margin-top:18px"
+>
+
+<div class="section-title">
+    Agentic Decision Workflow
+</div>
+
+<div class="agent-flow">
+
+<div class="flow-agent">
+<b>Data Agent</b>
+<span>Validate</span>
+</div>
+
+<div class="flow-arrow">→</div>
+
+<div class="flow-agent">
+<b>Analyst Agent</b>
+<span>Analyze</span>
+</div>
+
+<div class="flow-arrow">→</div>
+
+<div class="flow-agent">
+<b>Decision Agent</b>
+<span>Simulate</span>
+</div>
+
+<div class="flow-arrow">→</div>
+
+<div class="flow-agent">
+<b>Risk Agent</b>
+<span>Challenge</span>
+</div>
+
+<div class="flow-arrow">→</div>
+
+<div class="flow-agent">
+<b>Business Insight</b>
+<span>Decide</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ========================================================
+     PRODUCT + AGENTS
+========================================================= -->
+
+<div
+    class="grid"
+    id="how"
+>
+
+<div class="card">
+
+<div class="section-title">
+    Product performance
+</div>
+
+<div class="chartbox">
+
+<canvas id="chart"></canvas>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+    Agent report
+</div>
+
+
+<div class="agent">
+
+<b>
+    Data Agent
+</b>
+
+<span id="dataAgent">
+    Waiting for dataset
+</span>
+
+</div>
+
+
+<div class="agent">
+
+<b>
+    Analyst Agent
+</b>
+
+<span id="analystAgent">
+    Waiting for dataset
+</span>
+
+</div>
+
+
+<div class="agent">
+
+<b>
+    Decision Agent
+</b>
+
+<span id="decisionAgent">
+    Ready for scenario
+</span>
+
+</div>
+
+
+<div class="agent">
+
+<b>
+    Risk Agent
+</b>
+
+<span id="riskAgent">
+    Waiting for analysis
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ========================================================
+     AI BUSINESS INSIGHTS
+========================================================= -->
+
+<div
+    class="card"
+    id="insights"
+>
+
+<div class="section-title">
+    AI Business Insights
+</div>
+
+<div
+    id="insightsList"
+    class="insights"
+>
+
+<div class="empty">
+    Upload a dataset to generate evidence-based business insights.
+</div>
+
+</div>
+
+<div style="margin-top:15px">
+
+<div class="section-title">
+    Recommended Action
+</div>
+
+<div
+    id="recommendation"
+    class="recommendation"
+>
+
+Upload business data to generate a decision recommendation.
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ========================================================
+     REVENUE TREND
+========================================================= -->
+
+<div class="card">
+
+<div class="section-title">
+    Revenue Trend
+</div>
+
+<div class="mini-chart">
+
+<canvas id="trendChart"></canvas>
+
+</div>
+
+<div
+    id="trendMessage"
+    class="empty"
+>
+
+Revenue trend will appear when date information is available.
+
+</div>
+
+</div>
+
+
+<!-- ========================================================
+     INVENTORY INTELLIGENCE
+========================================================= -->
+
+<div class="card">
+
+<div class="section-title">
+    Inventory Intelligence
+</div>
+
+<div class="inventory-grid">
+
+<div class="inventory-item">
+
+<small>
+    Inventory status
+</small>
+
+<strong id="inventoryStatus">
+    —
+</strong>
+
+</div>
+
+
+<div class="inventory-item">
+
+<small>
+    Total inventory
+</small>
+
+<strong id="inventoryTotal">
+    —
+</strong>
+
+</div>
+
+
+<div class="inventory-item">
+
+<small>
+    Low-stock products
+</small>
+
+<strong id="lowStock">
+    —
+</strong>
+
+</div>
+
+</div>
+
+<div
+    id="inventoryMessage"
+    class="success"
+    style="margin-top:14px"
+>
+
+Upload a dataset to generate inventory intelligence.
+
+</div>
+
+</div>
+
+
+<!-- ========================================================
+     STRESS TESTER
+========================================================= -->
+
+<div
+    class="card"
+    id="stressTester"
+>
+
+<div class="section-title">
+    AI Decision Stress Tester
+</div>
+
+<div class="stress">
+
+<div>
+
+<label>
+    Scenario
+</label>
+
+<select id="scenario">
+
+<option>
+    Increase sales
+</option>
+
+<option>
+    Reduce sales
+</option>
+
+<option>
+    Increase price
+</option>
+
+<option>
+    Reduce price
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+    Change (%)
+</label>
+
+<input
+    id="change"
+    type="number"
+    value="20"
+    min="0"
+    max="100"
+>
+
+</div>
+
+
+<button
+    class="btn"
+    onclick="stress()"
+>
+    Run Stress Test
+</button>
+
+</div>
+
+
+<div id="stressResults"></div>
+
+</div>
+
+
+<!-- ========================================================
+     RISK + DATA CONFIDENCE
+========================================================= -->
+
+<div class="grid">
+
+<div class="card">
+
+<div class="section-title">
+    Risk Agent flags
+</div>
+
+<div id="warnings">
+
+<div class="warning">
+
+Upload a dataset to generate evidence-based risk flags.
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+    Data confidence gate
+</div>
+
+<div id="mapping">
+
+<span class="tag">
+    No dataset loaded
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+// ==========================================================
+// GLOBAL STATE
+// ==========================================================
+
+let state = {
+
+    base_revenue: 0,
+
+    base_cost: 0,
+
+    base_profit: null,
+
+    has_quantity: false,
+
+    has_price: false,
+
+    has_cost: false
+
+};
+
+
+let chart = null;
+
+let trendChart = null;
+
+
+// ==========================================================
+// MONEY FORMAT
+// ==========================================================
+
+const money = n => {
+
+    if(n == null)
+        return "Unavailable";
+
+    return "₹" +
+        Number(n).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits:0
+            }
+        );
+};
+
+
+// ==========================================================
+// ANALYZE
+// ==========================================================
+
+async function analyze(){
+
+    const file =
+        document.getElementById(
+            "file"
+        ).files[0];
+
+
+    if(!file){
+
+        alert(
+            "Choose a CSV or Excel file first."
+        );
+
+        return;
+    }
+
+
+    const fd =
+        new FormData();
+
+    fd.append(
+        "file",
+        file
+    );
+
+
+    document
+        .getElementById("status")
+        .textContent = "ANALYZING";
+
+
+    try{
+
+        const r =
+            await fetch(
+                "/api/analyze",
+                {
+                    method:"POST",
+                    body:fd
+                }
+            );
+
+
+        const d =
+            await r.json();
+
+
+        if(d.error){
+
+            alert(d.error);
+
+            document
+                .getElementById("status")
+                .textContent = "ERROR";
+
+            return;
+        }
+
+
+        // --------------------------------------------------
+        // SAVE STATE
+        // --------------------------------------------------
+
+        state = d;
+
+
+        state.has_quantity =
+            Object.prototype.hasOwnProperty.call(
+                d.mapping,
+                "quantity"
+            );
+
+
+        state.has_price =
+            Object.prototype.hasOwnProperty.call(
+                d.mapping,
+                "price"
+            );
+
+
+        state.has_cost =
+            Object.prototype.hasOwnProperty.call(
+                d.mapping,
+                "cost"
+            );
+
+
+        // --------------------------------------------------
+        // TOP METRICS
+        // --------------------------------------------------
+
+        document
+            .getElementById("confidence")
+            .textContent =
+                d.confidence + "%";
+
+
+        document
+            .getElementById("rows")
+            .textContent =
+                d.rows.toLocaleString();
+
+
+        document
+            .getElementById("baseRevenue")
+            .textContent =
+                money(d.base_revenue);
+
+
+        document
+            .getElementById("delta")
+            .textContent =
+                "₹0";
+
+
+        // --------------------------------------------------
+        // AGENTS
+        // --------------------------------------------------
+
+        document
+            .getElementById("dataAgent")
+            .textContent =
+                d.agent_summary.data;
+
+
+        document
+            .getElementById("analystAgent")
+            .textContent =
+                d.agent_summary.analyst;
+
+
+        document
+            .getElementById("decisionAgent")
+            .textContent =
+                d.agent_summary.decision;
+
+
+        document
+            .getElementById("riskAgent")
+            .textContent =
+                d.agent_summary.risk;
+
+
+        // --------------------------------------------------
+        // FIELD MAPPING
+        // --------------------------------------------------
+
+        const mappingHTML =
+            Object.entries(
+                d.mapping
+            )
+            .map(
+                ([a,b]) =>
+                    `<span class="tag"
+                     style="margin:4px">
+                     ${a} ← ${b}
+                     </span>`
+            )
+            .join("");
+
+
+        document
+            .getElementById("mapping")
+            .innerHTML =
+                mappingHTML ||
+                `<span class="tag">
+                    No recognized fields
+                 </span>`;
+
+
+        // --------------------------------------------------
+        // WARNINGS
+        // --------------------------------------------------
+
+        document
+            .getElementById("warnings")
+            .innerHTML =
+                d.warnings.length
+
+                ?
+
+                d.warnings
+                    .map(
+                        x =>
+                        `<div class="warning">
+                            ⚠ ${x}
+                         </div>`
+                    )
+                    .join("")
+
+                :
+
+                `<div class="success">
+                    ✓ No major data limitations detected.
+                 </div>`;
+
+
+        // --------------------------------------------------
+        // PRODUCT CHART
+        // --------------------------------------------------
+
+        drawChart(
+            d.products
+        );
+
+
+        // --------------------------------------------------
+        // BUSINESS INSIGHTS
+        // --------------------------------------------------
+
+        renderInsights(
+            d
+        );
+
+
+        // --------------------------------------------------
+        // INVENTORY
+        // --------------------------------------------------
+
+        renderInventory(
+            d.inventory
+        );
+
+
+        // --------------------------------------------------
+        // REVENUE TREND
+        // --------------------------------------------------
+
+        drawTrendChart(
+            d.revenue_trend
+        );
+
+
+        // --------------------------------------------------
+        // STATUS
+        // --------------------------------------------------
+
+        document
+            .getElementById("status")
+            .textContent =
+                "ANALYZED";
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to analyze the dataset."
+        );
+
+        document
+            .getElementById("status")
+            .textContent =
+                "ERROR";
+    }
+
+}
+
+
+// ==========================================================
+// PRODUCT CHART
+// ==========================================================
+
+function drawChart(products){
+
+    const ctx =
+        document.getElementById(
+            "chart"
+        );
+
+
+    if(chart)
+        chart.destroy();
+
+
+    if(!products ||
+       products.length === 0){
+
+        return;
+    }
+
+
+    chart =
+        new Chart(
+            ctx,
+            {
+
+                type:"bar",
+
+                data:{
+
+                    labels:
+                        products.map(
+                            x =>
+                                x.product
+                                .slice(0,24)
+                        ),
+
+                    datasets:[{
+
+                        label:"Revenue",
+
+                        data:
+                            products.map(
+                                x =>
+                                    x.revenue
+                            )
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+
+                        legend:{
+
+                            labels:{
+                                color:"#b9c8df"
+                            }
+
+                        }
+
+                    },
+
+                    scales:{
+
+                        x:{
+
+                            ticks:{
+                                color:"#91a4c2"
+                            },
+
+                            grid:{
+                                color:"#1c2b43"
+                            }
+
+                        },
+
+                        y:{
+
+                            ticks:{
+                                color:"#91a4c2"
+                            },
+
+                            grid:{
+                                color:"#1c2b43"
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+// ==========================================================
+// BUSINESS INSIGHTS
+// ==========================================================
+
+function renderInsights(d){
+
+    const container =
+        document.getElementById(
+            "insightsList"
+        );
+
+
+    if(!d.insights ||
+       d.insights.length === 0){
+
+        container.innerHTML =
+            `<div class="empty">
+                No sufficient evidence was available
+                to generate business insights.
+             </div>`;
+
+    }else{
+
+        container.innerHTML =
+            d.insights
+                .map(
+                    insight =>
+                    `<div class="insight">
+                        <b>AI Insight</b><br>
+                        ${insight}
+                     </div>`
+                )
+                .join("");
+    }
+
+
+    document
+        .getElementById(
+            "recommendation"
+        )
+        .textContent =
+            d.recommendation ||
+            "No recommendation available.";
+}
+
+
+// ==========================================================
+// INVENTORY
+// ==========================================================
+
+function renderInventory(inventory){
+
+    if(!inventory ||
+       !inventory.available){
+
+        document
+            .getElementById(
+                "inventoryStatus"
+            )
+            .textContent =
+                "Unavailable";
+
+
+        document
+            .getElementById(
+                "inventoryTotal"
+            )
+            .textContent =
+                "—";
+
+
+        document
+            .getElementById(
+                "lowStock"
+            )
+            .textContent =
+                "—";
+
+
+        document
+            .getElementById(
+                "inventoryMessage"
+            )
+            .textContent =
+                "Inventory data is unavailable in the uploaded dataset.";
+
+        return;
+    }
+
+
+    document
+        .getElementById(
+            "inventoryStatus"
+        )
+        .textContent =
+            inventory.low_stock > 0
+            ? "Review required"
+            : "Healthy";
+
+
+    document
+        .getElementById(
+            "inventoryTotal"
+        )
+        .textContent =
+            Number(
+                inventory.total
+            ).toLocaleString(
+                "en-IN"
+            );
+
+
+    document
+        .getElementById(
+            "lowStock"
+        )
+        .textContent =
+            inventory.low_stock;
+
+
+    const box =
+        document.getElementById(
+            "inventoryMessage"
+        );
+
+
+    box.textContent =
+        inventory.message;
+
+
+    if(
+        inventory.low_stock > 0
+    ){
+
+        box.className =
+            "warning";
+
+    }else{
+
+        box.className =
+            "success";
+    }
+
+}
+
+
+// ==========================================================
+// REVENUE TREND
+// ==========================================================
+
+function drawTrendChart(trend){
+
+    const ctx =
+        document.getElementById(
+            "trendChart"
+        );
+
+
+    if(trendChart)
+        trendChart.destroy();
+
+
+    if(!trend ||
+       trend.length < 2){
+
+        document
+            .getElementById(
+                "trendMessage"
+            )
+            .textContent =
+                "At least two valid dates are required to display the revenue trend.";
+
+        return;
+    }
+
+
+    document
+        .getElementById(
+            "trendMessage"
+        )
+        .textContent =
+            `${trend.length} dated revenue points analyzed.`;
+
+
+    trendChart =
+        new Chart(
+            ctx,
+            {
+
+                type:"line",
+
+                data:{
+
+                    labels:
+                        trend.map(
+                            x =>
+                                x.date
+                        ),
+
+                    datasets:[{
+
+                        label:"Revenue",
+
+                        data:
+                            trend.map(
+                                x =>
+                                    x.revenue
+                            ),
+
+                        tension:0.25,
+
+                        fill:false
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+
+                        legend:{
+
+                            labels:{
+                                color:"#b9c8df"
+                            }
+
+                        }
+
+                    },
+
+                    scales:{
+
+                        x:{
+
+                            ticks:{
+                                color:"#91a4c2"
+                            },
+
+                            grid:{
+                                color:"#1c2b43"
+                            }
+
+                        },
+
+                        y:{
+
+                            ticks:{
+                                color:"#91a4c2"
+                            },
+
+                            grid:{
+                                color:"#1c2b43"
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+// ==========================================================
+// STRESS TEST
+// ==========================================================
+
+async function stress(){
+
+    if(!state ||
+       !state.base_revenue){
+
+        alert(
+            "Run the business data analysis first."
+        );
+
+        return;
+    }
+
+
+    const payload = {
+
+        ...state,
+
+        scenario:
+            document
+                .getElementById(
+                    "scenario"
+                )
+                .value,
+
+        change:
+            document
+                .getElementById(
+                    "change"
+                )
+                .value
+
+    };
+
+
+    try{
+
+        const r =
+            await fetch(
+                "/api/stress",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+
+                }
+            );
+
+
+        const d =
+            await r.json();
+
+
+        if(d.error){
+
+            alert(d.error);
+
+            return;
+        }
+
+
+        // --------------------------------------------------
+        // DELTA
+        // --------------------------------------------------
+
+        document
+            .getElementById(
+                "delta"
+            )
+            .textContent =
+                money(
+                    d.revenue_delta
+                );
+
+
+        // --------------------------------------------------
+        // DECISION AGENT
+        // --------------------------------------------------
+
+        document
+            .getElementById(
+                "decisionAgent"
+            )
+            .textContent =
+                `${d.scenario}
+                 by ${d.change}%
+                 simulated`;
+
+
+        // --------------------------------------------------
+        // RISK AGENT
+        // --------------------------------------------------
+
+        document
+            .getElementById(
+                "riskAgent"
+            )
+            .textContent =
+                `${d.risks.length}
+                 scenario assumptions/risks identified`;
+
+
+        // --------------------------------------------------
+        // RESULTS
+        // --------------------------------------------------
+
+        document
+            .getElementById(
+                "stressResults"
+            )
+            .innerHTML =
+
+            `
+
+            <div class="results">
+
+                <div class="result">
+
+                    <small>
+                        Base revenue
+                    </small>
+
+                    <b>
+                        ${money(
+                            d.base_revenue
+                        )}
+                    </b>
+
+                </div>
+
+
+                <div class="result">
+
+                    <small>
+                        Scenario revenue
+                    </small>
+
+                    <b>
+                        ${money(
+                            d.scenario_revenue
+                        )}
+                    </b>
+
+                </div>
+
+
+                <div class="result">
+
+                    <small>
+                        Revenue delta
+                    </small>
+
+                    <b>
+                        ${money(
+                            d.revenue_delta
+                        )}
+                    </b>
+
+                </div>
+
+
+                <div class="result">
+
+                    <small>
+                        Base profit
+                    </small>
+
+                    <b>
+                        ${money(
+                            d.base_profit
+                        )}
+                    </b>
+
+                </div>
+
+
+                <div class="result">
+
+                    <small>
+                        Scenario profit
+                    </small>
+
+                    <b>
+                        ${money(
+                            d.scenario_profit
+                        )}
+                    </b>
+
+                </div>
+
+
+                <div class="result">
+
+                    <small>
+                        Profit delta
+                    </small>
+
+                    <b>
+                        ${money(
+                            d.profit_delta
+                        )}
+                    </b>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="success"
+                style="margin-top:14px"
+            >
+
+                <b>
+                    Decision insight:
+                </b>
+
+                ${d.insight}
+
+            </div>
+
+
+            ${d.risks
+                .map(
+                    x =>
+                    `<div class="warning">
+                        ⚠ ${x}
+                     </div>`
+                )
+                .join("")}
+
+            `;
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to run the stress test."
+        );
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
